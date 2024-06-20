@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Viewer</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+        }
+        #container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+        #image {
+            position: absolute;
+            max-width: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img id="image" src="PUBG 2000.jpg" alt="Image">
+    </div>
+    <script>
+        const image = document.getElementById('image');
+        let posX = -50, posY = -420; // 初始坐标设置为 -30, -420
+
+        image.addEventListener('load', () => {
+            image.style.transform = `translate(${posX}px, ${posY}px)`;
+        });
+
+        document.addEventListener('keydown', (event) => {
+        const step = 400; // 每次移动400px
+        switch(event.key) {
+            case 'w':
+                posY += step;
+                if (posY > -20) {posY = -20;}
+                break;
+            case 's':
+                posY -= step;
+                if (posY < -820) {posY = -820;}
+                break;
+        }
+        image.style.transform = `translate(${posX}px, ${posY}px)`;
+    });
+
+    </script>
+</body>
+</html>
